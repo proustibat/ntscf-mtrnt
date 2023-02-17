@@ -1,0 +1,58 @@
+{
+    "title": "Canon",
+    "composer_image": "PachelbelIcon.svg",
+    "composer": "Pachelbel",
+    "description": "Definitely an All-Time-Greatest Hit! Always a pleasure to listen to.\nThe melody evolves and becomes gradually more complex: ideal to improve your fingers' flexibility and accuracy!\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "trial":
+    {
+        "title": "Try 7 days for free",
+        "description": "Ceci est un extrait de la partition. Commence vote essai gratuit pour obtenir la version compl�te et bien d'autres fonctionnalit�s !",
+        "cta": "Essayer gratuitement"
+    },
+    "versions":
+    {
+        "title": "Available versions",
+        "instrument": "Violon",
+        "data":
+        [
+            {
+                "title": "Intermediate with orchestra",
+                "description": "Composed for Violin",
+                "current": true
+            },
+            {
+                "title": "Intermediate with Piano",
+                "description": "Composed for Violin",
+                "current": false
+            },
+            {
+                "title": "Easy with Piano",
+                "description": "Composed for Violin",
+                "current": false
+            }
+        ]
+    },
+    "similar_pieces":
+    [
+        {
+            "title": "Douce Nuit (instrumental)",
+            "composer": "Ludwig van Beethoven",
+            "composer_image": "BeethovenIcon.svg"
+        },
+        {
+            "title": "Douce Nuit (instrumental) Suite du titre ici",
+            "composer": "Ludwig van Beethoven",
+            "composer_image": "ElgarIcon.svg"
+        },
+        {
+            "title": "Sonata Path�tique in C minor Op. 13 - 2. Adagio cantabile",
+            "composer": "Ludwig van Beethoven",
+            "composer_image": "ElgarIcon.svg"
+        },
+        {
+            "title": "Douce Nuit (instrumental)",
+            "composer": "Ludwig van Beethoven",
+            "composer_image": "BeethovenIcon.svg"
+        }
+    ]
+}

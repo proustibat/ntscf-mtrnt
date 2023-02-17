@@ -1,0 +1,37 @@
+<html>
+<head>
+    <script src="http://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            verovio.module.onRuntimeInitialized = async _ => {
+                let tk = new verovio.toolkit();
+                console.log("Verovio has loaded!"); // refer to documentation here: https://book.verovio.org/first-steps/getting-started.html
+
+                fetch("https://www.verovio.org/examples/musicxml/Bach_Invention_No_1_BVW.772.xml")
+                    .then((response) => response.text())
+                    .then((meiXML) => {
+                        const pageHeight = 2970;
+                        const pageWidth = 2100;
+                        const pageNumber = 1
+                        const options = {
+                            pageHeight,
+                            pageWidth,
+                            scale: 50, // zoom level
+                            adjustPageHeight: 1, // useful for infinite scrolling
+                            inputFrom: "musicxml", // music sheet format
+                        };
+                        tk.setOptions(options);
+                        tk.loadData(meiXML);
+                        let svg = tk.renderToSVG(1); // page number, starts to 1
+                        document.getElementById("music-sheet").innerHTML = svg;
+                        console.log(svg)
+                    });
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Music Sheet</h1>
+    <div id="music-sheet"></div>
+</body>
+</html>

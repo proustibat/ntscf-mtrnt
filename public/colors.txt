@@ -1,0 +1,10 @@
+couleurs de l’app : 
+
+#F68BC9 (rose)
+#F77026 (orange)
+#35AFF7 (bleu)
+#FFBE00 (jaune) 
+#00504B (vert)
+#00033A (bleu sombre)
+#B1B2F5 (violet)
+#FFF7ED (background)

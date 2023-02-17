@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Group 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="40" height="40" rx="9.52380952"></rect>
+        <rect id="path-3" x="0" y="0" width="40" height="40"></rect>
+    </defs>
+    <g id="Preview" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MacBook-15&quot;-Copy-29" transform="translate(-34.000000, -88.000000)">
+            <g id="Group-15">
+                <g id="Group-9" transform="translate(35.000000, 89.000000)">
+                    <g id="Group-8">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Rectangle" stroke="#CCCCCC" stroke-width="0.5" fill="#FFFFFF" xlink:href="#path-1"></use>
+                        <g id="AppIcon" mask="url(#mask-2)">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <g id="Rectangle"></g>
+                            <path d="M27.4679617,4.58966667 L32.0933315,9.48706551 L31.5454196,11.8099172 L27.9179277,10.7965121 L25.2746487,20.9669037 C24.8408443,22.4857873 23.4394884,23.6014934 21.7775171,23.6014934 C19.7707869,23.6014934 18.1440106,21.9748933 18.1440106,19.9683804 C18.1440106,17.9618675 19.7707869,16.3352674 21.7775171,16.3352674 C22.7369216,16.3352674 23.6094788,16.7070648 24.2589367,17.3144223 L27.4679617,4.58966667 Z" id="Oval-4-Copy" fill="#00033A" fill-rule="evenodd" mask="url(#mask-4)"></path>
+                            <g id="Group-26-Copy" stroke-width="1" fill-rule="evenodd" mask="url(#mask-4)" fill="#FFBE00">
+                                <g transform="translate(-4.447048, 47.449811) rotate(-45.000000) translate(4.447048, -47.449811) translate(-34.947048, 38.949811)" id="Fill-9">
+                                    <path d="M1.82768579,13.2158382 L0.0199046,13.2158382 C0.0199046,10.4435251 2.27474646,8.13683038 5.04642951,8.07356955 C5.04642951,8.07356955 17.742301,7.62237094 21.6616413,7.52422361 C50.9401604,6.79160732 55.2084034,6.05899102 57.3176366,0.987425634 C58.3983045,-1.61045501 60.2465584,1.11441246 60.3912368,8.06984832 C60.5438235,15.4299675 58.6662618,17.8734173 57.4181205,14.8462002 C54.7064488,8.26800359 41.6500445,9.72439827 21.6630369,9.63090248 C17.4948127,9.61136604 5.08783263,9.88068975 5.08783263,9.88068975 C3.29028592,9.92162323 1.82768579,11.4180211 1.82768579,13.2158382"></path>
+                                </g>
+                            </g>
+                            <g id="Group-2" stroke-width="1" fill-rule="evenodd" mask="url(#mask-4)" fill="#00033A">
+                                <g transform="translate(31.609636, 25.254574) rotate(77.000000) translate(-31.609636, -25.254574) translate(27.109636, 19.254574)" fill-rule="nonzero">
+                                    <polygon id="Stroke-20" points="1.31929736 3.63414036 2.31125863 1.13324574 1.70171833 0.891476108 0.709757052 3.39237072"></polygon>
+                                    <polygon id="Stroke-22" points="4.39908732 7.29798839 7.30862122 4.63805593 6.8661689 4.15408498 3.956635 6.81401744"></polygon>
+                                    <polygon id="Stroke-24" points="5.89056214 11.8926775 8.34297326 11.2962649 8.18801801 10.6590987 5.73560689 11.2555113"></polygon>
+                                </g>
+                            </g>
+                            <g id="Group-5" stroke-width="1" fill-rule="evenodd" mask="url(#mask-4)" fill="#00033A">
+                                <g transform="translate(14.992375, 11.365549) scale(1, -1) rotate(-10.000000) translate(-14.992375, -11.365549) translate(9.492375, 5.365549)" fill-rule="nonzero">
+                                    <polygon id="Stroke-26" points="9.49824159 8.03024227 8.54148975 10.9501302 9.16462826 11.1543123 10.1213801 8.23442439"></polygon>
+                                    <polygon id="Stroke-28" points="5.62428719 5.11880749 2.68524996 7.62270305 3.11050056 8.1218562 6.04953779 5.61796064"></polygon>
+                                    <polygon id="Stroke-30" points="3.74342597 0.744217666 0.943782288 1.27990242 1.06701578 1.92395633 3.86665946 1.38827158"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
