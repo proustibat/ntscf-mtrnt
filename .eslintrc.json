@@ -1,7 +1,17 @@
 {
   "plugins": ["@typescript-eslint"],
   "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "next",
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended"
-  ]
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  }
 }
