@@ -1,3 +1,19 @@
+:root {
+  --color-rose: #f68bc9;
+  --color-orange: #f77026;
+  --color-blue: #35aff7;
+  --color-yellow: #ffbe00;
+  --color-green: #00504b;
+  --color-darkBlue: #00033a;
+  --color-purple: #b1b2f5;
+  --color-app-background: #fff7ed;
+  --color-component-background:#fff;
+  --shadow-bottom: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  --zIndex-navbar: 10;
+  --zIndex-page: 0;
+  --border-radius: 10px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,6 +22,6 @@
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  background: var(--color-app-background);
 }
+
