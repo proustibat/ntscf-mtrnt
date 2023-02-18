@@ -15,10 +15,13 @@ const TrialAd = ({
   data: { title, description, cta },
 }: TrialAdProps) => (
   <section className={[styles.container, className].join(' ')}>
-    <h2>{title}</h2>
-    <p>{description}</p>
-    {/*todo: use Link component?*/}
-    <button>{cta}</button>
+    <div>
+      <h2 className={styles.title}>{title}</h2>
+      <p>{description}</p>
+    </div>
+    <div>
+      <button className={styles.button}>{cta}</button>
+    </div>
   </section>
 );
 export default TrialAd;
