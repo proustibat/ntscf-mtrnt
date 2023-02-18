@@ -2,7 +2,12 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import NavBar from '@/components/NavBar';
 import styles from './Layout.module.css';
-const Layout = ({ children }: { children: ReactNode }) => {
+type LayoutProps = {
+  children: ReactNode;
+  globalFontClassName: string;
+};
+
+const Layout = ({ children, globalFontClassName }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -13,8 +18,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar className={styles.navbar} />
-      <main className={styles.main}>{children}</main>
+      <NavBar className={[styles.navbar, globalFontClassName].join(' ')} />
+      <main className={[styles.main, globalFontClassName].join(' ')}>
+        {children}
+      </main>
     </>
   );
 };

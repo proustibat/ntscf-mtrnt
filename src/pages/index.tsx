@@ -11,8 +11,10 @@ import Player from '@/components/Player';
 import SimilarMasterpieces, {
   SimilarMasterpiecesInformationPropsData,
 } from '@/components/SimilarMasterpieces';
-
+import { Roboto } from '@next/font/google';
 import styles from './Home.module.css';
+
+const fontRoboto = Roboto({ weight: '400' });
 
 const json = {
   title: 'Canon',
@@ -103,7 +105,7 @@ const getData: (dataType: DATA_TYPE) => unknown = (dataType) => {
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout globalFontClassName={fontRoboto.className}>
       <Head>
         <title>Pachelbel - Canon [Metronaut by Antescofo]</title>
       </Head>
