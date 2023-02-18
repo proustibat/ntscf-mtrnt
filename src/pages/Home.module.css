@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     flex-basis: 100%;
 }
 
@@ -10,13 +10,14 @@
     margin: var(--margins-not-fixed-component);
     border-radius: var(--border-radius);
 }
-.section:last-child {
-    margin-bottom: 1rem;
-}
+
 .trial {
     margin: 0;
     box-shadow: var(--shadow-bottom);
     border-radius: 0;
+}
+.aside {
+    margin-bottom: 1rem;
 }
 
 /*Medium devices (tablets, 768px and up)*/
@@ -41,6 +42,7 @@
     }
     .player {
         flex: 1 0 auto;
+        height: fit-content;
     }
 
 }

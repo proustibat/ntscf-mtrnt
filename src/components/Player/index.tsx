@@ -1,5 +1,5 @@
 import styles from './Player.module.css';
-type PlayerProps = {
+export type PlayerProps = {
   className?: string;
 };
 const Player = ({ className }: PlayerProps) => (
