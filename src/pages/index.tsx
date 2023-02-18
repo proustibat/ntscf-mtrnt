@@ -11,6 +11,7 @@ import Player from '@/components/Player';
 import SimilarMasterpieces, {
   SimilarMasterpiecesInformationPropsData,
 } from '@/components/SimilarMasterpieces';
+import { v4 } from 'uuid';
 import { Roboto } from '@next/font/google';
 import styles from './Home.module.css';
 
@@ -92,9 +93,13 @@ const getData: (dataType: DATA_TYPE) => unknown = (dataType) => {
     [DATA_TYPE.VERSIONS]: {
       title: json.versions.title,
       instrument: json.versions.instrument,
-      versions: json.versions.data,
+      versions: json.versions.data.map((dataVersion) => ({
+        ...dataVersion,
+        id: v4(),
+      })),
     },
     [DATA_TYPE.SIMILAR]: json.similar_pieces.map((item) => ({
+      id: v4(),
       title: item.title,
       composer: item.composer,
       illustration: item.composer_image,

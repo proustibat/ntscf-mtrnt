@@ -1,3 +1,11 @@
 .container {
-    background: var(--color-component-background);
+  background: var(--color-component-background);
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.select {
+  margin-top: 0.5rem;
 }

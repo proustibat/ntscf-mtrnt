@@ -2,12 +2,13 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import NavBar from '@/components/NavBar';
 import styles from './Layout.module.css';
-type LayoutProps = {
+
+export type LayoutProps = {
   children: ReactNode;
-  globalFontClassName: string;
+  globalFontClassName?: string;
 };
 
-const Layout = ({ children, globalFontClassName }: LayoutProps) => {
+const Layout = ({ children, globalFontClassName = '' }: LayoutProps) => {
   return (
     <>
       <Head>

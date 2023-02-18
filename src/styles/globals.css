@@ -6,10 +6,11 @@
   --color-green: #00504b;
   --color-darkBlue: #00033a;
   --color-purple: #b1b2f5;
+  --color-light: #fff;
+  --color-dark-light: #515154;
   --color-app-background: #fff7ed;
-  --color-component-background:#fff;
-  --color-light:#fff;
-  --color-trial-background:#242427;
+  --color-component-background: #fff;
+  --color-trial-background: #242427;
   --shadow-bottom: 0px 5px 5px 0px rgba(36, 36, 39, 0.2);
   --zIndex-navbar: 10;
   --zIndex-page: 0;
@@ -26,4 +27,3 @@ html,
 body {
   background: var(--color-app-background);
 }
-

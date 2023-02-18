@@ -1,12 +1,12 @@
 .navbar {
-    min-height: 4rem;
-    position: sticky;
-    top: 0;
-    z-index: var(--zIndex-navbar);
-    background: black;
-    color: white;
+  min-height: 4rem;
+  position: sticky;
+  top: 0;
+  z-index: var(--zIndex-navbar);
+  background: black;
+  color: white;
 }
 
 .main {
-    z-index: var(--zIndex-page);
+  z-index: var(--zIndex-page);
 }
