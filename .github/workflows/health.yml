@@ -1,0 +1,83 @@
+name: Check health of the project
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  eslint-and-prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: NPM RUN LINT
+        run: npm run lint
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:ci --collectCoverage
+
+      - name: Deploy coverage on Surge
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'coverage-antescofo-metronaut.surge.sh'
+          project: './coverage/lcov-report'
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
+
+  #https://www.foo.software/docs/lighthouse-check-github-action/intro
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          urls: https://antescofo-metronaut.vercel.app
+          device: all
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "90"
+          minBestPracticesScore: "90"
+          minPerformanceScore: "90"
+          minProgressiveWebAppScore: "20"
+          minSeoScore: "90"
+
