@@ -1,6 +1,8 @@
 # Performance page challenge
 
-[![Demo](https://img.shields.io/badge/check%20the%20demo-deployed%20here-2fa4cf.svg)](https://antescofo-metronaut.vercel.app/)
+[![Demo](https://img.shields.io/badge/deployed-demo-2fa4cf.svg)](https://antescofo-metronaut.vercel.app/)
+
+[![Demo](https://img.shields.io/badge/coverage%20-report-facd07.svg)](https://coverage-antescofo-metronaut.surge.sh/)
 
 ## Prerequisites
 Be sure [Node](https://nodejs.org/) and [NPM](https://www.npmjs.com/) are installed.
@@ -44,6 +46,8 @@ I used Prettier in addition to Eslint. You can have a look on configuration file
 npm run lint 
 ```
 
+A Github action also runs the linter at each push on main branch.
+
 ## Production
 
 ### Build a production version
@@ -59,10 +63,17 @@ npm run start
 ```
 
 ## Deployment
+
+### Project
 The project is deployed at this url: [https://antescofo-metronaut.vercel.app/](https://antescofo-metronaut.vercel.app/).
 I used the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) for that.
 
 Check out  [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+### Coverage
+The coverage report is deployed at this url: [http://coverage-antescofo-metronaut.surge.sh](http://coverage-antescofo-metronaut.surge.sh).
+I used a Github action to run the tests and deploy the coverage report for each push on main branch.
 
 ---
 
