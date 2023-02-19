@@ -31,6 +31,13 @@
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: 1rem;
+    align-items: center;
+  }
+
   .title {
     display: block;
     margin-bottom: 0.5rem;
@@ -47,5 +54,16 @@
 
   .button {
     padding: 1rem;
+  }
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
   }
 }

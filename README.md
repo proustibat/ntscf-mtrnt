@@ -1,9 +1,7 @@
 # Performance page challenge
 
 [![Demo](https://img.shields.io/badge/deployed-demo-2fa4cf.svg)](https://antescofo-metronaut.vercel.app/)
-
 [![Coverage](https://img.shields.io/badge/coverage%20-report-facd07.svg)](https://coverage-antescofo-metronaut.surge.sh/)
-
 [![Health pipeline](https://github.com/proustibat/ntscf-mtrnt/actions/workflows/health.yml/badge.svg)](https://github.com/proustibat/ntscf-mtrnt/actions/workflows/health.yml)
 
 
