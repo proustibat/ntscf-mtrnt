@@ -1,5 +1,5 @@
 import Select, { MultiValue, PropsValue, SingleValue } from 'react-select';
-import styles from './AvailableVersions.module.css';
+import styles from '@/components/AvailableVersions/AvailableVersions.module.css';
 
 export type AvailableVersionsPropsData = {
   title: string;

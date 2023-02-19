@@ -1,4 +1,4 @@
-import styles from './TrialAd.module.css';
+import styles from '@/components/TrialAd/TrialAd.module.css';
 
 export type TrialAdPropsData = {
   title: string;

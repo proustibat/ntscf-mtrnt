@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './MasterpieceInformation.module.css';
+import styles from '@/components/MasterpieceInformation/MasterpieceInformation.module.css';
 import Description from '@/components/MasterpieceInformation/Description';
 
 export type MasterpieceInformationPropsData = {

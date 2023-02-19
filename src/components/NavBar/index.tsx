@@ -1,4 +1,4 @@
-import styles from './NavBar.module.css';
+import styles from '@/components/NavBar/Navbar.module.css';
 
 type NavBarProps = {
   className?: string;

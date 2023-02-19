@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './SimilarMasterpieces.module.css';
+import styles from '@/components/SimilarMasterpieces/SimilarMasterpieces.module.css';
 
 export type SimilarMasterpiecesInformationPropsData = {
   id: string;

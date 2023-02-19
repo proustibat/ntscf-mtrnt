@@ -1,4 +1,4 @@
-import styles from './Player.module.css';
+import styles from '@/components/Player/Player.module.css';
 export type PlayerProps = {
   className?: string;
 };
