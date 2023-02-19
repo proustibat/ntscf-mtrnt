@@ -49,7 +49,10 @@ const Home = ({
           data={masterPieceInformation}
         />
 
-        <Player className={[styles.section, styles.player].join(' ')} />
+        <Player
+          className={[styles.section, styles.player].join(' ')}
+          title={`${masterPieceInformation.title} by ${masterPieceInformation.composer}`}
+        />
 
         {AvailableVersions && (
           <AvailableVersions

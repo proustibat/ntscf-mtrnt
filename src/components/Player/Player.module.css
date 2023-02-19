@@ -1,3 +1,26 @@
+@keyframes pulse {
+  0%   { fill: orange; }
+  50%  { fill: brown; }
+  100% { fill: orange; }
+}
+
 .container {
   background: var(--color-component-background);
+}
+
+.notation svg {
+  /*width: 100%;*/
+  /*height: 100%;*/
+}
+
+.notation svg g.tempo {
+  fill: crimson;
+  color: crimson;
+  animation-name: pulse;
+  animation-duration: 1.0s;
+  animation-iteration-count: infinite;
+}
+
+.notation svg g.chord g.artic {
+
 }
