@@ -1,5 +1,7 @@
 # Performance page challenge
 
+[![Demo](https://img.shields.io/badge/check%20the%20demo-deployed%20here-2fa4cf.svg)](https://antescofo-metronaut.vercel.app/)
+
 ## Prerequisites
 Be sure [Node](https://nodejs.org/) and [NPM](https://www.npmjs.com/) are installed.
 
@@ -56,6 +58,12 @@ After you built the production version, you can serve it with the following npm 
 npm run start
 ```
 
+## Deployment
+The project is deployed at this url: [https://antescofo-metronaut.vercel.app/](https://antescofo-metronaut.vercel.app/).
+I used the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) for that.
+
+Check out  [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
 ---
 
 ## Learn More
@@ -66,9 +74,3 @@ The project uses Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -11,6 +11,10 @@
   display: none;
 }
 
+.buttonContainer {
+  flex-shrink: 6;
+}
+
 .button {
   border: 0;
   border-radius: var(--border-radius);
@@ -19,9 +23,8 @@
   font-family: system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.2;
-  white-space: nowrap;
   text-decoration: none;
-  padding: 1rem;
+  padding: 0.5rem;
   cursor: pointer;
   font-weight: bold;
 }
@@ -32,5 +35,17 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
+  }
+
+  .button {
+    white-space: nowrap;
+  }
+
+  .buttonContainer {
+    flex-shrink: unset;
+  }
+
+  .button {
+    padding: 1rem;
   }
 }

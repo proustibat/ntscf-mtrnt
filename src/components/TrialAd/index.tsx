@@ -19,7 +19,7 @@ const TrialAd = ({
       <h2 className={styles.title}>{title}</h2>
       <p>{description}</p>
     </div>
-    <div>
+    <div className={styles.buttonContainer}>
       <button className={styles.button}>{cta}</button>
     </div>
   </section>
