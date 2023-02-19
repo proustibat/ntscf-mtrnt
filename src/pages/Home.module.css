@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex-basis: 100%;
 }
 
@@ -16,9 +16,6 @@
   box-shadow: var(--shadow-bottom);
   border-radius: 0;
 }
-.aside {
-  margin-bottom: 1rem;
-}
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
@@ -32,16 +29,15 @@
   }
 
   .container {
-    flex-direction: row-reverse;
-    justify-content: center;
-    width: 100%;
+    display: grid;
+    grid-template-columns: auto 35%;
+    grid-template-areas:
+        "player info"
+        "player versions"
+        "player similar";
   }
 
-  .aside {
-    width: 35%;
-  }
   .player {
-    flex: 1 0 auto;
-    height: fit-content;
+    grid-area: player;
   }
 }

@@ -35,6 +35,7 @@ const Home = ({
       <Head>
         <title>Pachelbel - Canon [Metronaut by Antescofo]</title>
       </Head>
+
       {trialAd && (
         <TrialAd
           className={[styles.section, styles.trial].join(' ')}
@@ -43,29 +44,28 @@ const Home = ({
       )}
 
       <div className={styles.container}>
-        <aside className={[styles.aside].join(' ')}>
-          <MasterpieceInformation
-            className={styles.section}
-            data={masterPieceInformation}
-          />
-          {AvailableVersions && (
-            <AvailableVersions
-              className={styles.section}
-              data={availableVersions as AvailableVersionsPropsData}
-            />
-          )}
-
-          {SimilarMasterpieces && (
-            <SimilarMasterpieces
-              className={styles.section}
-              data={
-                similarMasterpieces as SimilarMasterpiecesInformationPropsData
-              }
-            />
-          )}
-        </aside>
+        <MasterpieceInformation
+          className={styles.section}
+          data={masterPieceInformation}
+        />
 
         <Player className={[styles.section, styles.player].join(' ')} />
+
+        {AvailableVersions && (
+          <AvailableVersions
+            className={styles.section}
+            data={availableVersions as AvailableVersionsPropsData}
+          />
+        )}
+
+        {SimilarMasterpieces && (
+          <SimilarMasterpieces
+            className={styles.section}
+            data={
+              similarMasterpieces as SimilarMasterpiecesInformationPropsData
+            }
+          />
+        )}
       </div>
     </Layout>
   );
