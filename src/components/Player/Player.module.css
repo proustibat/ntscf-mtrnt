@@ -13,13 +13,13 @@
   /*height: 100%;*/
 }
 
-.notation svg g.tempo {
-  fill: crimson;
-  color: crimson;
-  animation-name: pulse;
-  animation-duration: 1.0s;
-  animation-iteration-count: infinite;
-}
+/*.notation [data-id].playing {*/
+/*  fill: crimson;*/
+/*  color: crimson;*/
+/*  animation-name: pulse;*/
+/*  animation-duration: 1.0s;*/
+/*  animation-iteration-count: infinite;*/
+/*}*/
 
 .notation svg g.chord g.artic {
 

@@ -1,7 +1,9 @@
 // https://book.verovio.org/toolkit-reference/toolkit-options.html
 export const toolkitOptions = {
+  inputFrom: 'musicxml',
+  // landscape: true,
   // https://book.verovio.org/interactive-notation/css-and-svg.html
-  svgAdditionalAttribute: ['note@pname', 'note@oct'],
+  // svgAdditionalAttribute: ['note@pname', 'note@oct'],
   scale: 30,
   svgHtml5: true,
   svgViewBox: true,
