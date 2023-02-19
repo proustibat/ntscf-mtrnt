@@ -1,30 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Performance page challenge
 
-## Getting Started
+## Prerequisites
+Be sure [Node](https://nodejs.org/) and [NPM](https://www.npmjs.com/) are installed.
+
+If you work on multiple projects I recommend to use [NVM](https://github.com/nvm-sh/nvm) to manage different node version.
+Since this project has a `.nvmrc` file, you can just run `nvm use` to be sure to use the right version of Node.
+
+## Installation
+
+```$xslt
+git clone git@github.com:proustibat/ntscf-mtrnt.git
+cd ntscf-mtrnt
+npm i
+```
+
+## Development
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Testing
+```bash
+npm run test
+```
+This watches test files, and run Jest on changed files. Note that I used React Testing Library to test React components.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Coverage
+```bash
+npm run test:ci
+open coverage/index.html
+```
+This runs the tests, by collecting coverage, so you can open the html reporter to visualize it.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Linting
+I used Prettier in addition to Eslint. You can have a look on configuration files to know more about the applied rules.
+```bash
+# runs eslint with --fix option and prettier with --write option
+npm run lint 
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Build a production version
+```bash
+npm run build
+```
+This is what we are supposed to run on a CI/CD pipeline. It builds assets depending on pages (SSG, SSR...)
+
+### Serve the production version
+After you built the production version, you can serve it with the following npm script:
+```bash
+npm run start
+```
+
+---
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+The project uses Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
