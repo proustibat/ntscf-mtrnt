@@ -5,65 +5,17 @@ import { useState } from 'react';
 
 export type PlayerProps = {
   className?: string;
-  title: string;
 };
-const Player = ({ className, title }: PlayerProps) => {
-  const [isNotationReady, setIsNotationReady] = useState(false);
-  // const [isFileSaverLoaded, setIsFileSaverLoaded] = useState(false);
+
+const Player = ({ className }: PlayerProps) => {
   const [isMidiPlayerLoaded, setIsMidiPlayerLoaded] = useState(false);
+  const [isNotationReady, setIsNotationReady] = useState(false);
   // let tk = null;
   let svg = null;
   // The current page, which will change when playing through the piece
   let currentPage = 1;
 
-  // const changeSVGProgrammatically = () => {
-  //   // Get all the rests by selecting <g> with attribute class 'rest' ...
-  //   const rests = document.querySelectorAll('g.rest');
-  //   // ... and change their color by setting their style.fill value
-  //   for (const rest of rests) {
-  //     rest.style.fill = 'dodgerblue';
-  //   }
-  //
-  //   // Get all the notes with @pname="c" and @oct="5" and change their color
-  //   const c5s = document.querySelectorAll('g[data-pname="c"][data-oct="5"]');
-  //   for (const c5 of c5s) {
-  //     c5.style.fill = 'aqua';
-  //   }
-  //
-  //   // Get all the verses ...
-  //   const verses = document.querySelectorAll('g.verse');
-  //   // ... and use the 'getElementAttr()' to retrieve all attributes ...
-  //   for (const verse of verses) {
-  //     const attr = window.tk.getElementAttr(verse.id);
-  //     // ... and change to color when @n exists and is greater than 1
-  //     if (attr.n && attr.n > 1) verse.style.fill = 'darkcyan';
-  //   }
-  // };
-
-  // const fetchMEI = async () =>
-  //   new Promise(async (resolve, reject) => {
-  //     const response = await fetch(
-  //       'https://www.verovio.org/examples/downloads/Schubert_Lindenbaum.mei'
-  //     ).catch(reject);
-  //
-  //     !response && reject('No response while fetching');
-  //
-  //     const meiXML = await response?.text();
-  //     !meiXML && reject("Can't transform the result");
-  //
-  //     resolve(meiXML);
-  //   });
-
-  const onRuntimeInitialized = async () => {
-    console.log('Verovio has loaded!');
-
-    window.tk = new window.verovio.toolkit();
-
-    // https://book.verovio.org/first-steps/layout-options.html
-    window.tk.setOptions(toolkitOptions);
-
-    // TODO: remove the part after the return
-    // https://book.verovio.org/interactive-notation/encoding-formats.html
+  const loadMasterpiece = () =>
     fetch(
       'https://www.verovio.org/examples/musicxml/Schubert_Staendchen_D.923.mxl'
     )
@@ -81,74 +33,42 @@ const Player = ({ className, title }: PlayerProps) => {
         console.log(e);
       });
 
-    /*
-    // https://book.verovio.org/first-steps/basic-rendering.html
-    const MEI = await fetchMEI().catch((error) => {
-      console.log(error);
+  const highlightNote = (note: string) => {
+    const noteElement = document.querySelector(
+      `[data-id=${note}]`
+    ) as SVGGElement;
+    noteElement.classList.add('playing');
+    const parentElement = noteElement?.parentElement;
+    if (parentElement) {
+      noteElement.style.fill = '#f77026';
+      noteElement.style.stroke = '#f77026';
+    }
+  };
+
+  const togglePlayingNotesToPlayed = () => {
+    console.log('TOGGLE PLAYING TO PLAYED');
+    document.querySelectorAll('g.note.playing').forEach((note) => {
+      note.classList.remove('playing');
+      note.classList.add('played');
+      note.style.stroke = 'var(--color-played-note)';
+      note.style.fill = 'var(--color-played-note)';
     });
-    if (!MEI) return;
-
-    // load the data into Verovio
-    window.tk.loadData(MEI);
-
-    // generate the SVG for the first page
-    svg = window.tk.renderToSVG(currentPage);
-
-    // gets the <div> element with the ID we specified, and sets the content (innerHTML) to the SVG that we just generated.
-    document.getElementById('notation').innerHTML = svg;
-
-    setIsNotationReady(true);
-
-    // https://book.verovio.org/interactive-notation/css-and-svg.html
-    // changeSVGProgrammatically();
-
-     */
+  };
+  const clearNotesColor = () => {
+    console.log('CLEAR ALL PLAYED NOTES');
+    document
+      .querySelectorAll('g.note.played, g.note.playing')
+      .forEach((note) => {
+        note.classList.remove('playing');
+        note.classList.remove('played');
+        note.style.stroke = 'black';
+        note.style.fill = 'black';
+      });
   };
 
-  // const onFileSaverReady = () => {
-  //   console.log('Filesaver has loaded!');
-  //   setIsFileSaverLoaded(true);
-  // };
-
-  const onMidiPlayerReady = () => {
-    console.log('MidiPlayer has loaded!');
-    setIsMidiPlayerLoaded(true);
-    // https://book.verovio.org/interactive-notation/playing-midi.html
-    window.MIDIjs.player_callback = midiHightlightingHandler;
-  };
-
-  // const handleSaveMEI = () => {
-  //   console.log(window.tk);
-  //   const meiContent = window.tk.getMEI();
-  //   const myBlob = new Blob([meiContent], { type: 'application/xml' });
-  //
-  //   window.saveAs(myBlob, 'meifile.mei');
-  // };
-
-  // https://book.verovio.org/interactive-notation/playing-midi.html
-  const playMIDIHandler = () => {
-    // Get the MIDI file from the Verovio toolkit
-    const base64midi = window.tk.renderToMIDI();
-    // Add the data URL prefixes describing the content
-    const midiString = 'data:audio/midi;base64,' + base64midi;
-    // Pass it to play to MIDIjs
-    window.MIDIjs.play(midiString);
-  };
-  const stopMIDIHandler = () => {
-    window.MIDIjs.stop();
-  };
-
-  const midiHightlightingHandler = (event: { time: number }) => {
-    // console.log(event);
-
+  const handlePlayerCallback = (event: { time: number }) => {
     // Remove the color of all notes previously colored
-    document.querySelectorAll('g.note').forEach((note) => {
-      const noteElement = note.parentElement;
-      if (noteElement) {
-        console.log('remove color on ', note);
-        noteElement.style.fill = 'black';
-      }
-    });
+    togglePlayingNotesToPlayed();
 
     // Get elements at a time in milliseconds (time from the player is in seconds)
     const currentElements = window.tk.getElementsAtTime(event.time * 1000);
@@ -166,58 +86,73 @@ const Player = ({ className, title }: PlayerProps) => {
 
     // Get all notes playing and color them
     currentElements.notes.forEach((note: string) => {
-      const noteElement = document.querySelector(
-        `[data-id=${note}]`
-      ) as SVGGElement;
-      // TODO: scroll
-      const parentElement = noteElement?.parentElement;
-      if (parentElement) {
-        console.log('add color on ', note);
-        noteElement.style.fill = '#f77026';
-      }
+      highlightNote(note);
     });
   };
 
+  const onMidiPlayerReady = () => {
+    console.log('MidiPlayer has loaded!');
+    setIsMidiPlayerLoaded(true);
+    // https://book.verovio.org/interactive-notation/playing-midi.html
+    window.MIDIjs.player_callback = handlePlayerCallback;
+  };
+
+  // https://book.verovio.org/interactive-notation/playing-midi.html
+  const playMIDIHandler = () => {
+    // Get the MIDI file from the Verovio toolkit
+    const base64midi = window.tk.renderToMIDI();
+    // Add the data URL prefixes describing the content
+    const midiString = 'data:audio/midi;base64,' + base64midi;
+    // Pass it to play to MIDIjs
+    window.MIDIjs.play(midiString);
+  };
+  const stopMIDIHandler = async () => {
+    await window.MIDIjs.stop();
+    clearNotesColor();
+  };
+
+  // FIRST STEP
+  const onRuntimeInitialized = async () => {
+    console.log('Verovio has loaded!');
+
+    window.tk = new window.verovio.toolkit();
+
+    // https://book.verovio.org/first-steps/layout-options.html
+    window.tk.setOptions(toolkitOptions);
+
+    // https://book.verovio.org/interactive-notation/encoding-formats.html
+    await loadMasterpiece();
+  };
+
   return (
-    <section className={[styles.container, className].join(' ')}>
-      <h2>{title}</h2>
-
-      {/*<button*/}
-      {/*  disabled={!isFileSaverLoaded || !isNotationReady}*/}
-      {/*  onClick={handleSaveMEI}*/}
-      {/*>*/}
-      {/*  save MEI*/}
-      {/*</button>*/}
-
-      <button disabled={!isMidiPlayerLoaded} onClick={playMIDIHandler}>
-        Play
-      </button>
-      <button disabled={!isMidiPlayerLoaded} onClick={stopMIDIHandler}>
-        Pause
-      </button>
-
+    <>
       <Script
         src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" // https://book.verovio.org/first-steps/getting-started.html
         onLoad={() => {
           window.verovio.module.onRuntimeInitialized = onRuntimeInitialized;
         }}
       />
-      {isNotationReady && (
-        <>
-          {/*<Script*/}
-          {/*  src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" // https://book.verovio.org/interactive-notation/encoding-formats.html*/}
-          {/*  strategy="lazyOnload" // Load the script later during browser idle time.*/}
-          {/*  onLoad={onFileSaverReady}*/}
-          {/*/>*/}
-          <Script
-            src="https://www.midijs.net/lib/midi.js" // https://book.verovio.org/interactive-notation/encoding-formats.html
-            strategy="lazyOnload" // Load the script later during browser idle time.
-            onLoad={onMidiPlayerReady}
-          />
-        </>
-      )}
-      <div id="notation" className={styles.notation}></div>
-    </section>
+      <section className={[styles.container, className].join(' ')}>
+        <button disabled={!isMidiPlayerLoaded} onClick={playMIDIHandler}>
+          Play
+        </button>
+        <button disabled={!isMidiPlayerLoaded} onClick={stopMIDIHandler}>
+          Stop
+        </button>
+
+        {isNotationReady && (
+          <>
+            <Script
+              src="https://www.midijs.net/lib/midi.js" // https://book.verovio.org/interactive-notation/encoding-formats.html
+              strategy="lazyOnload" // Load the script later during browser idle time.
+              onLoad={onMidiPlayerReady}
+            />
+          </>
+        )}
+        <div id="notation" className={styles.notation}></div>
+      </section>
+    </>
   );
 };
+
 export default Player;

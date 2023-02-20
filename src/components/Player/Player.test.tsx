@@ -3,6 +3,6 @@ import Player from '@/components/Player/index';
 
 describe('Player', () => {
   it('should render correctly', () => {
-    render(<Player title={'masterpiece'} />);
+    render(<Player />);
   });
 });
