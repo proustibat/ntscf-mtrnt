@@ -15,6 +15,9 @@ import jsonPerformance from '../json/data.json';
 import { v4 } from 'uuid';
 import { Roboto } from '@next/font/google';
 import styles from './Home.module.css';
+import { VerovioToolkit } from 'verovio/esm';
+import createVerovioModule from 'verovio/wasm';
+import { toolkitOptions } from '@/components/Player/utils';
 
 const fontRoboto = Roboto({ weight: '400' });
 
@@ -23,12 +26,16 @@ type HomeProps = {
   masterPieceInformation: MasterpieceInformationPropsData;
   availableVersions?: AvailableVersionsPropsData;
   similarMasterpieces?: SimilarMasterpiecesInformationPropsData;
+  svgScore: SVGElement;
+  mei: string;
 };
 const Home = ({
   trialAd,
   masterPieceInformation,
   availableVersions,
   similarMasterpieces,
+  svgScore,
+  mei,
 }: HomeProps) => {
   return (
     <Layout globalFontClassName={fontRoboto.className}>
@@ -49,7 +56,11 @@ const Home = ({
           data={masterPieceInformation}
         />
 
-        <Player className={[styles.section, styles.player].join(' ')} />
+        <Player
+          className={[styles.section, styles.player].join(' ')}
+          svgScore={svgScore}
+          mei={mei}
+        />
 
         {AvailableVersions && (
           <AvailableVersions
@@ -75,6 +86,26 @@ export default Home;
 
 // This function gets called at build time
 export async function getStaticProps() {
+  let svgScore = null;
+  let base64midi = null;
+  let mei = null;
+  const verovioModule = await createVerovioModule();
+  if (verovioModule) {
+    const tk = new VerovioToolkit(verovioModule);
+    tk.setOptions(toolkitOptions);
+    const mxlData = await fetch(
+      'https://www.verovio.org/examples/musicxml/Schubert_Staendchen_D.923.mxl'
+    )
+      .then((response) => response.arrayBuffer())
+      .catch(console.log);
+    if (mxlData) {
+      tk.loadZipDataBuffer(mxlData);
+      svgScore = tk.renderToSVG(1);
+      base64midi = tk.renderToMIDI();
+      mei = tk.getMEI();
+    }
+  }
+
   const json = jsonPerformance;
   return {
     props: {
@@ -99,6 +130,8 @@ export async function getStaticProps() {
         composer: item.composer,
         illustration: item.composer_image,
       })),
+      svgScore,
+      mei,
     },
   };
 }

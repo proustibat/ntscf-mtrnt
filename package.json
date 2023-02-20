@@ -23,7 +23,8 @@
     "react-dom": "18.2.0",
     "react-select": "^5.7.0",
     "typescript": "4.9.5",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "verovio": "^3.14.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.16.5",
@@ -35,6 +36,7 @@
     "@types/react-select": "^5.0.1",
     "@types/testing-library__jest-dom": "5.14.5",
     "@types/uuid": "^9.0.0",
+    "@types/verovio": "^3.13.0",
     "@typescript-eslint/eslint-plugin": "5.52.0",
     "@typescript-eslint/parser": "5.52.0",
     "eslint": "8.34.0",

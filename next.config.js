@@ -6,6 +6,7 @@ const nextConfig = {
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['latin'] } },
     ],
+    largePageDataBytes: 1024 * 10000,
   },
 };
 
