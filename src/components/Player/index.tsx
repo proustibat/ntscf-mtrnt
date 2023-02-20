@@ -2,11 +2,14 @@ import Script from 'next/script';
 import styles from '@/components/Player/Player.module.css';
 import {
   clearNotesColor,
+  createACursor,
+  displayCursorForNote,
   highlightNote,
+  removeAllCursors,
   togglePlayingNotesToPlayed,
   toolkitOptions,
 } from '@/components/Player/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type PlayerProps = {
   className?: string;
@@ -24,6 +27,9 @@ const Player = ({ className, svgScore, mei }: PlayerProps) => {
     // Remove the color of all notes previously colored
     togglePlayingNotesToPlayed();
 
+    // Remove all cursors
+    removeAllCursors();
+
     // Get elements at a time in milliseconds (time from the player is in seconds)
     const currentElements = window.tk.getElementsAtTime(event.time * 1000);
 
@@ -40,6 +46,11 @@ const Player = ({ className, svgScore, mei }: PlayerProps) => {
     // Get all notes playing and color them
     currentElements.notes.forEach((note: string) => {
       highlightNote(note);
+    });
+
+    // find notehead for each note (they contain x and y coordinates)
+    currentElements.notes.forEach((note: string, index) => {
+      displayCursorForNote(note, `cursor-${note}-${index}`);
     });
   };
 
@@ -61,6 +72,7 @@ const Player = ({ className, svgScore, mei }: PlayerProps) => {
   const stopMIDIHandler = async () => {
     await window.MIDIjs.stop();
     clearNotesColor();
+    removeAllCursors();
   };
   //
   // // FIRST STEP
@@ -75,6 +87,13 @@ const Player = ({ className, svgScore, mei }: PlayerProps) => {
     // https://book.verovio.org/interactive-notation/encoding-formats.html
     window.tk.loadData(mei);
   };
+
+  // useEffect(() => {
+  //   if (!document.querySelector('.cursor')) {
+  //     const svg = document.querySelector('svg.definition-scale');
+  //     svg?.appendChild(createACursor({ className: 'cursor' }));
+  //   }
+  // }, []);
 
   return (
     <>

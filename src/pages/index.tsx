@@ -87,7 +87,6 @@ export default Home;
 // This function gets called at build time
 export async function getStaticProps() {
   let svgScore = null;
-  let base64midi = null;
   let mei = null;
   const verovioModule = await createVerovioModule();
   if (verovioModule) {
@@ -101,7 +100,6 @@ export async function getStaticProps() {
     if (mxlData) {
       tk.loadZipDataBuffer(mxlData);
       svgScore = tk.renderToSVG(1);
-      base64midi = tk.renderToMIDI();
       mei = tk.getMEI();
     }
   }

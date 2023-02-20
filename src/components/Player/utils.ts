@@ -99,3 +99,52 @@ export const clearNotesColor = () => {
     el.classList.remove('played');
   });
 };
+
+export const createACursor = ({
+  className,
+  x = 0,
+  y = 0,
+}: {
+  className: string;
+  x?: number;
+  y?: number;
+}): SVGGElement => {
+  const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  group.classList.add(className);
+  group.classList.add('cursor-displayed');
+
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.classList.add(`${className}-rect`);
+  rect.setAttribute('height', '2500');
+  rect.setAttribute('width', '320');
+  rect.setAttribute('y', y.toString());
+  rect.setAttribute('x', x.toString());
+  rect.style.fill = 'var(--color-orange)';
+  rect.style.color = 'var(--color-orange)';
+  rect.style.opacity = '0.5';
+
+  group.appendChild(rect);
+
+  return group;
+};
+
+export const displayCursorForNote = (note: string, name: string) => {
+  const useEl = document
+    .querySelector(`[data-id=${note}]`)
+    ?.querySelector('.notehead use');
+
+  const svg = document.querySelector('svg.definition-scale');
+  svg?.appendChild(
+    createACursor({
+      className: name,
+      x: useEl ? +(useEl.getAttribute('x') as string) : undefined,
+      y: useEl ? +(useEl.getAttribute('y') as string) : undefined,
+    })
+  );
+};
+
+export const removeAllCursors = () => {
+  document.querySelectorAll('.cursor-displayed').forEach((el) => {
+    el.remove();
+  });
+};
