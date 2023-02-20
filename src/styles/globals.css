@@ -28,3 +28,14 @@ html,
 body {
   background: var(--color-app-background);
 }
+
+#notation g.playing {
+  fill: var(--color-orange);
+  stroke: var(--color-orange);
+  color: var(--color-orange);
+}
+#notation g.played {
+  fill: var(--color-played-note);
+  stroke: var(--color-played-note);
+  color: var(--color-played-note);
+}

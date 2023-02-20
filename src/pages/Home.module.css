@@ -32,12 +32,14 @@
     display: grid;
     grid-template-columns: auto 35%;
     grid-template-areas:
-        "player info"
-        "player versions"
-        "player similar";
+      'player info'
+      'player versions'
+      'player similar'
+      'player similar';
   }
 
   .player {
     grid-area: player;
+    margin: 1rem 0 1rem 1rem;
   }
 }

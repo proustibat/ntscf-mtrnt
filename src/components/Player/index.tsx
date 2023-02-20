@@ -34,36 +34,57 @@ const Player = ({ className }: PlayerProps) => {
       });
 
   const highlightNote = (note: string) => {
+    const elementsToColor = [];
+
+    // Note
     const noteElement = document.querySelector(
       `[data-id=${note}]`
     ) as SVGGElement;
-    noteElement.classList.add('playing');
-    const parentElement = noteElement?.parentElement;
+
+    elementsToColor.push(noteElement);
+
+    const parentElement =
+      (noteElement.closest('.chord') as SVGGElement) ||
+      (noteElement.closest('.tuplet') as SVGGElement);
+
     if (parentElement) {
-      noteElement.style.fill = '#f77026';
-      noteElement.style.stroke = '#f77026';
+      // notes and stem
+      parentElement
+        .querySelectorAll('.note, .stem, .dot')
+        .forEach((currentNoteEl) => {
+          elementsToColor.push(currentNoteEl);
+        });
+      // potential beam element to color
+      const beamElement = parentElement.closest('.beam');
+      if (beamElement) {
+        // If all notes in a beam are playing then beam has been played
+        if (
+          Array.from(
+            beamElement?.querySelectorAll('.chord:last-child .note')
+          ).every((el) => el.classList.contains('playing'))
+        ) {
+          elementsToColor.push(beamElement as SVGGElement);
+        }
+      }
     }
+
+    //COLOR ELEMENTS AND ADD CLASS
+    elementsToColor.forEach((el) => {
+      el.classList.add('playing');
+    });
   };
 
   const togglePlayingNotesToPlayed = () => {
-    console.log('TOGGLE PLAYING TO PLAYED');
-    document.querySelectorAll('g.note.playing').forEach((note) => {
-      note.classList.remove('playing');
-      note.classList.add('played');
-      note.style.stroke = 'var(--color-played-note)';
-      note.style.fill = 'var(--color-played-note)';
+    document.querySelectorAll('g.playing').forEach((el) => {
+      el.classList.remove('playing');
+      el.classList.add('played');
     });
   };
   const clearNotesColor = () => {
-    console.log('CLEAR ALL PLAYED NOTES');
-    document
-      .querySelectorAll('g.note.played, g.note.playing')
-      .forEach((note) => {
-        note.classList.remove('playing');
-        note.classList.remove('played');
-        note.style.stroke = 'black';
-        note.style.fill = 'black';
-      });
+    document.querySelectorAll('g.played, g.playing').forEach((el) => {
+      el.classList.remove('playing');
+      el.classList.remove('played');
+    });
   };
 
   const handlePlayerCallback = (event: { time: number }) => {
@@ -76,12 +97,11 @@ const Player = ({ className }: PlayerProps) => {
     if (currentElements.page == 0) return;
 
     if (currentElements.page != currentPage) {
-      console.log('CHANGE PAGE');
       currentPage = currentElements.page;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      document.getElementById('notation').innerHTML =
-        window.tk.renderToSVG(currentPage);
+      if (document.getElementById('notation')) {
+        document.getElementById('notation')!.innerHTML =
+          window.tk.renderToSVG(currentPage);
+      }
     }
 
     // Get all notes playing and color them
@@ -91,7 +111,6 @@ const Player = ({ className }: PlayerProps) => {
   };
 
   const onMidiPlayerReady = () => {
-    console.log('MidiPlayer has loaded!');
     setIsMidiPlayerLoaded(true);
     // https://book.verovio.org/interactive-notation/playing-midi.html
     window.MIDIjs.player_callback = handlePlayerCallback;
@@ -128,6 +147,7 @@ const Player = ({ className }: PlayerProps) => {
     <>
       <Script
         src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" // https://book.verovio.org/first-steps/getting-started.html
+        strategy="lazyOnload"
         onLoad={() => {
           window.verovio.module.onRuntimeInitialized = onRuntimeInitialized;
         }}
@@ -149,7 +169,7 @@ const Player = ({ className }: PlayerProps) => {
             />
           </>
         )}
-        <div id="notation" className={styles.notation}></div>
+        <div id="notation"></div>
       </section>
     </>
   );

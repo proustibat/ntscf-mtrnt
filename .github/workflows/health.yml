@@ -3,7 +3,7 @@ name: Check health of the project
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,7 +16,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: '18'
           cache: npm
 
       - name: Install
@@ -47,7 +47,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: '18'
           cache: npm
 
       - name: Install dependencies
@@ -75,9 +75,8 @@ jobs:
           urls: https://antescofo-metronaut.vercel.app
           device: all
           lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: "90"
-          minBestPracticesScore: "90"
-          minPerformanceScore: "90"
-          minProgressiveWebAppScore: "20"
-          minSeoScore: "90"
-
+          minAccessibilityScore: '90'
+          minBestPracticesScore: '90'
+          minPerformanceScore: '90'
+          minProgressiveWebAppScore: '20'
+          minSeoScore: '90'
